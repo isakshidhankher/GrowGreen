@@ -1,0 +1,67 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block body %}
+        <div id="search">
+            <button class="close" type="button">×</button>
+            <form class="search-overlay-form">
+                <input placeholder="type keyword(s) here" type="search" value="" />
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <!--Header End-->
+        <!--Inner Header Start-->
+        <!-- <section class="wf100 p100 inner-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#"> Contact </a></li>
+                    <li><a href="#"> Contact One</a></li>
+                </ul>
+            </div>
+        </section> -->
+        <!--Inner Header End-->
+        <!--Contact Start-->
+        <section class="contact-page wf100 p80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="contact-form mb60">
+                            <h3></h3>
+                            <ul class="cform">
+                                <form id="form-submit" action="{% url 'write-post' %}" method="post" enctype="multipart/form-data">
+                                <!-- <li class="half pr-15">
+                                    <input class="form-control" placeholder="Title" type="text" />
+                                </li>
+                                <li class="half pl-15">
+                                    <input class="form-control" placeholder="Image" type="text" />
+                                </li> -->
+                                    {%csrf_token%}
+                                    
+                                    <li class="full">
+                                        <textarea class="textarea-control" name="message" placeholder="Typer your message here ..."></textarea>
+                                    </li>
+                                    <li class="half  pr-15">
+                                        <input name="image" id="img" type="file">
+                                    </li>
+                                    <li class="half pl-15">
+                                        <button class="fsubmit" id="f-submit" type="submit"><i class="fas fa-paper-plane"></i></button>
+                                    </li>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <script>
+            document.getElementById('f-submit').onclick = function(){
+                
+                document.getElementById('form-submit').submit();
+            }
+        </script>
+        <!--Contact End-->
+        <!--Footer Start-->
+{%endblock%}

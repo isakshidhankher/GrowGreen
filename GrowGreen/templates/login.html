@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title>Login V18</title>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<!--===============================================================================================-->
+	<link href="{% static 'images/icons/favicon.ico' %}" rel="icon" type="image/png" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/animate/animate.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/animaition/css/animsition.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'vendor/daterangepicker/daterangepicker.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+	<link href="{% static 'css/util.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" />
+	<!--===============================================================================================-->
+</head>
+
+<body style="background-color: #666666;">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				
+				
+				
+				
+				<form action="/login" class="login100-form validate-form" method="POST">
+					{% for message in messages %}
+				<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+				   {{message}}
+				   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+				   </button>
+				</div>
+				{%endfor%}
+					{%csrf_token%}
+					<span class="login100-form-title p-b-43">
+						Login to continue
+					</span>
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" name="username" type="text" />
+						<span class="focus-input100"></span>
+						<span class="label-input100">username</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" name="password" type="password" />
+						<span class="focus-input100"></span>
+						<span class="label-input100">Password</span>
+					</div>
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						<!-- <div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" name="remember-me" type="checkbox" />
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div> -->
+						<!-- <div>
+							<a class="txt1" href="#">
+								Forgot Password?
+							</a>
+						</div> -->
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+					<div class="text-center p-t-46 p-b-20">
+						<span class="txt2">
+							Not Registered? Register <a href="{% url 'signup'%}">Here</a>
+						</span>
+					</div>
+					<!-- <div class="login100-form-social flex-c-m">
+						<a class="login100-form-social-item flex-c-m bg1 m-r-5" href="#">
+							<i aria-hidden="true" class="fa fa-facebook-f"></i>
+						</a>
+						<a class="login100-form-social-item flex-c-m bg2 m-r-5" href="#">
+							<i aria-hidden="true" class="fa fa-twitter"></i>
+						</a>
+					</div> -->
+				</form>
+				<div class="login100-more" style="background-image: url('static/images/bg-01.jpg');">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+	<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block body %}
+        <div id="search">
+            <button class="close" type="button">×</button>
+            <form class="search-overlay-form">
+               <input placeholder="type keyword(s) here" type="search" value=""/>
+               <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+         </div>
+         <!--Header End-->
+         <!--Inner Header Start-->
+         <section class="wf100 p100 inner-header">
+            <div class="container">
+               <h1>{{post_details.author}}</h1>
+               <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#"> Blogs </a></li>
+                  
+               </ul>
+            </div>
+         </section>
+         <!--Inner Header End-->
+         <!--Blog Start-->
+         <section class="wf100 p80 blog">
+            <div class="blog-details">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-9 col-md-8">
+                        <!--Blog Single Content Start-->
+                        <div class="blog-single-content">
+                           
+                         
+                           <div class="blog-single-thumb"><img alt="" src="/media/{{post_details.thumbnail}}"/></div>
+                           <h3>{{post_details.title}}</h3>
+                           <ul class="post-meta">
+                              <li><i class="fas fa-user-circle"></i>{{post_details.author}}</li>
+                              <li><i class="fas fa-calendar-alt"></i> {{post_details.timestamp}}</li>
+                              <li><i class="fas fa-comments"></i>{{comments| length}}</li>
+                              
+                              <li class="tags"><i class="fas fa-tags"></i> 
+                                 {% for tag in tags %}
+                                 <a href="#">{{tag.tag}}</a>
+                                 {% endfor %}
+                              </li>
+                           </ul>
+                           <p> {{post_details.brief_description}}</p>
+                           <p>{{post_details.content|safe}} </p>
+                            
+                           {% comment %} <ul class="small-gallery">
+                              <li> <img alt="" src="{% static 'images/blog/bsmall1.jpg' %}"/> </li>
+                              <li> <img alt="" src="{% static 'images/blog/bsmall2.jpg' %}"/> </li>
+                              <li> <img alt="" src="{% static 'images/blog/bsmall3.jpg' %}"/> </li>
+                           </ul> {% endcomment %}
+                          
+                           <!--Post Tags Start-->
+                           {% comment %} <div class="single-post-tags wf100"> <a href="#">Solar Energy</a> <a href="#"> Plant Ecology </a> <a href="#"> Wildlife </a> <a href="#"> Eco Ideas </a> <a href="#"> Waste Management </a> <a href="#"> Water </a> <a href="#"> Forest Planting </a> <a href="#"> Donation </a> <a href="#"> Wind Energy </a> <a href="#"> Recycling </a> </div> {% endcomment %}
+                           <!--Post Tags End-->
+                           <!--Author Box Start-->
+                           {% comment %} <div class="author-box wf100">
+                              <img alt="" src="{% static 'images/auser.jpg' %}"/>
+                              <h5>About Post Author</h5>
+                              <p> Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibe saepe eveniet ut et voluptates repudiandae sint et molestiaerecusanda Itaque earum rerum hic tenetur a sapien delectus, ut aut reiciendis. </p>
+                           </div> {% endcomment %}
+                           <!--Author Box End-->
+                           <!--Author Comments Start-->
+                           {% comment %} <div class="post-comments wf100">
+                              <h4>Comments on Post</h4>
+                              <ul class="comments">
+                                 <!--Comment Start-->
+                                 <li class="comment">
+                                    <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                                    <div class="comment-txt">
+                                       <h6> Mason Gray </h6>
+                                       <p> Personally I think a combination of all these methods is most effective, but in today’s post I will be focusing specifically on how to use and style WordPress’ built-in sticky post feature and highlighting it’s best use case based on my own experience. </p>
+                                       <ul class="comment-time">
+                                          <li>Posted: 09 July, 2018 at 2:37 pm</li>
+                                          <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                                       </ul>
+                                    </div>
+                                    <ul class="children">
+                                       <!--Comment Start-->
+                                       <li class="comment">
+                                          <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                                          <div class="comment-txt">
+                                             <h6> Johny Elite </h6>
+                                             <p> Personally I think a combination of all these methods is most effective, but in today’s post I will be focusing specifically on how to use and style WordPress’ built-in sticky post feature and highlighting it’s best use case based on my own experience. </p>
+                                             <ul class="comment-time">
+                                                <li>Posted: 09 July, 2018 at 2:37 pm</li>
+                                                <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <!--Comment End-->
+                                       <!--Comment Start-->
+                                       <li class="comment">
+                                          <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                                          <div class="comment-txt">
+                                             <h6> Rog Kelly </h6>
+                                             <p> Personally I think a combination of all these methods is most effective, but in today’s post I will be focusing specifically on how to use and style WordPress’ built-in sticky post feature and highlighting it’s best use case based on my own experience. </p>
+                                             <ul class="comment-time">
+                                                <li>Posted: 09 July, 2018 at 2:37 pm</li>
+                                                <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <!--Comment End-->
+                                    </ul>
+                                 </li>
+                                 <!--Comment End-->
+                                 <!--Comment Start-->
+                                 <li class="comment">
+                                    <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                                    <div class="comment-txt">
+                                       <h6> Harry Butler </h6>
+                                       <p> Personally I think a combination of all these methods is most effective, but in today’s post I will be focusing specifically on how to use and style WordPress’ built-in sticky post feature and highlighting it’s best use case based on my own experience. </p>
+                                       <ul class="comment-time">
+                                          <li>Posted: 09 July, 2018 at 2:37 pm</li>
+                                          <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                                       </ul>
+                                    </div>
+                                 </li>
+                                 <!--Comment End-->
+                              </ul>
+                           </div> {% endcomment %}
+                           {% if user.is_authenticated %}
+                                {% include "comment.html"%}
+                            {% endif %}
+                           <!--Author Comments End-->
+                           <!--Related Posts Start-->
+                        
+                           <!--Related Posts End-->
+                           <!--Leave a Comment Start-->
+                           {% comment %} <div class="wf100 comment-form">
+                              <h4>Leave a Comment</h4>
+                              <ul>
+                                 <form action="/blog/comment" method="post">
+                                    <li class="full">
+                                       <textarea class="form-control" name="comment"placeholder="Write Comments"></textarea>
+                                    </li>
+                                    <li class="full">
+                                       <button class="post-btn">Post Your Comment</button>
+                                    </li>
+                                    </form>
+                              </ul>
+                              
+                           </div> {% endcomment %}
+                           <!--Leave a Comment End-->
+                        </div>
+                        <!--Blog Single Content End-->
+                     </div>
+                     <!--Sidebar Start-->
+                     <div class="col-lg-3 col-md-4">
+                        <div class="sidebar">
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              <h5>Search</h5>
+                              <div class="side-search">
+                                 <form id="form-submit-js" action="{% url 'search' %}">
+                                    {%csrf_token%}
+                                    <input class="form-control" name="search" placeholder="Search" type="search"/>
+                                    <button type="submit" id="f-submit"><i class="fas fa-search"></i></button>
+                                 </form>
+                              </div>
+                           </div>
+                           <script>
+                        
+                          </script>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              
+                              <h5>Recent Articles</h5>
+                              <ul class="lastest-products">
+                                 {% for recent_post in recent_posts|slice:':4' %}
+                                 <li> <img alt="" src="{{recent_post.thumbnail}}"/> <strong><a href="{% url 'blog_details' recent_post.sno%}">{{recent_post.title}}...</a></strong> <span class="pdate"><i class="fas fa-calendar-alt"></i>{{recent_post.timestamp}}</span> </li>
+                                 
+                                 {%endfor%}
+                              </ul>
+                           </div>
+                           <!--Widget Start-->
+                           <!--Widget Start-->
+                           <div class="side-widget project-list-widget">
+                              <h5>Current Projects</h5>
+                              <ul>
+                                 <li><a href="#">Waste Management</a></li>
+                                 <li><a href="#">Solar Energy</a></li>
+                                 <li><a href="#">Eco Ideas</a></li>
+                                 <li><a href="#">Recycling Materials</a></li>
+                                 <li><a href="#">Plant Ecology</a></li>
+                                 <li><a href="#">Saving Wildlife</a></li>
+                                 <li><a href="#">Water Resources</a></li>
+                                 <li><a href="#">Forest &amp; Tree Planting</a></li>
+                                 <li><a href="#">Wing Energy</a></li>
+                              </ul>
+                           </div>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              <h5>Tags</h5>
+                              <div class="single-post-tags"> 
+                                 {% for tg in tags %}
+                                 <a href="#">{{tg.tag}}</a> 
+                              </div>
+                                 {%endfor%}
+                           </div>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              <h5>Recent Work</h5>
+                              <div class="owl-carousel owl-theme" id="side-slider">
+                                  {% for i in recent %}
+                                  <!--Item Start-->
+                                  <div class="item">
+                                      <div class="pro-box"> <img alt=""
+                                              src="/media/{{i.img}}" />
+                                          <!-- <h5>Forest &amp; Tree Planting</h5> -->
+                                          <div class="pro-hover">
+                                              <!-- <h6>Forest &amp; Tree Planting</h6> -->
+                                              <p>{{i.text}}</p>
+                                              <!-- <a href="#">Read More</a> -->
+                                          </div>
+                                      </div>
+                                  </div>
+                                  {%endfor%}
+                                 <!--Item End-->
+                                 <!--Item Start-->
+                                 <div class="item">
+                                    <div class="pro-box">
+                                       <img alt="" src="{% static 'images/current-pro2.jpg' %}"/>
+                                       <h5>Forest &amp; Tree Planting</h5>
+                                       <div class="pro-hover">
+                                          <h6>Forest &amp; Tree Planting</h6>
+                                          <p>We are working over 20 years on Waste Management &amp; Material Recycling Projects.</p>
+                                          <a href="#">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--Item End-->
+                                 <!--Item Start-->
+                                 <div class="item">
+                                    <div class="pro-box">
+                                       <img alt="" src="{% static 'images/current-pro1.jpg' %}"/>
+                                       <h5>Forest &amp; Tree Planting</h5>
+                                       <div class="pro-hover">
+                                          <h6>Forest &amp; Tree Planting</h6>
+                                          <p>We are working over 20 years on Waste Management &amp; Material Recycling Projects.</p>
+                                          <a href="#">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--Item End-->
+                              </div>
+                           </div>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <!-- <div class="side-widget archives">
+                              <h5>Archives</h5>
+                              <ul>
+                                 <li><a href="#"> November 2018</a></li>
+                                 <li><a href="#"> October 2018</a></li>
+                                 <li><a href="#"> September 2018</a></li>
+                                 <li><a href="#"> August 2018</a></li>
+                                 <li><a href="#"> July 2018</a></li>
+                                 <li><a href="#"> June 2018</a></li>
+                                 <li><a href="#"> May 2018</a></li>
+                                 <li><a href="#"> April 2018</a></li>
+                                 <li><a href="#"> March 2018</a></li>
+                                 <li><a href="#"> February 2018</a></li>
+                                 <li><a href="#"> January 2018</a></li>
+                                 <li><a href="#"> December 2017</a></li>
+                              </ul>
+                           </div> -->
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                         
+                           <!--Widget End-->
+                        </div>
+                     </div>
+                     <!--Sidebar End-->
+                  </div>
+               </div>
+            </div>
+         </section>
+         <script>
+            document.getElementById('f-submit').onclick = function(){
+                document.getElementById('form-submit-js').submit();
+            }
+        </script>
+         <!--Blog End-->
+         <!--Footer Start-->
+       {% endblock %}

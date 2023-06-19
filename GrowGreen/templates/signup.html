@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>Sign Up Form by Colorlib</title>
+    <!-- Font Icon -->
+    <link href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}" rel="stylesheet" />
+    <!-- Main css -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main">
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form action="/signup" class="signup-form" id="signup-form" method="POST">
+                        {% csrf_token %}
+                        <h2 class="form-title">Create account</h2>
+                        <div class="form-group">
+                            <input class="form-input" id="name" name="name" placeholder="Your Name" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" id="email" name="email" placeholder="Your Email" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" id="password" name="password" placeholder="Password"
+                                type="text" />
+                            <span class="zmdi zmdi-eye field-icon toggle-password" toggle="#password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-input" id="re_password" name="re_password"
+                                placeholder="Repeat your password" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <input class="agree-term" id="agree-term" name="agree-term" type="checkbox" />
+                            <label class="label-agree-term" for="agree-term"><span><span></span></span>I agree all
+                                statements in <a class="term-service" href="{%url 'about'%}">Terms of service</a></label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-submit" id="submit" name="submit" type="submit" value="Sign up" />
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a class="loginhere-link" href="{% url 'login'%}">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

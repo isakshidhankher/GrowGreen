@@ -1,0 +1,186 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block body %}
+        <div id="search">
+            <button class="close" type="button">×</button>
+            <form class="search-overlay-form">
+               <input placeholder="type keyword(s) here" type="search" value=""/>
+               <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+         </div>
+         <!--Header End-->
+         <!--Inner Header Start-->
+         {% comment %} <section class="wf100 p100 inner-header">
+            <div class="container">
+               <h1>Awareness Campaign</h1>
+               <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#"> Blogs </a></li>
+                  <li><a href="#">Awareness Campaign to Save &amp; Forest Planting</a></li>
+               </ul>
+            </div>
+         </section> {% endcomment %}
+         <!--Inner Header End-->
+         <!--Blog Start-->
+         <section class="wf100 p80 blog">
+            <div class="blog-details">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-9 col-md-8">
+                        <!--Blog Single Content Start-->
+                        <div class="blog-single-content">
+                           
+                         
+                           <div class="blog-single-thumb"><img alt="" src="/media/{{post_details.thumbnail}}"/></div>
+                           
+                           <ul class="post-meta">
+                              <li><i class="fas fa-user-circle"></i>{{post_details.author}}</li>
+                              <li><i class="fas fa-calendar-alt"></i> {{post_details.timestamp}}</li>
+                              <li><i class="fas fa-comments"></i>{{comments| length}}</li>
+                              
+                              <li class="tags"><i class="fas fa-tags"></i> 
+                                
+                              </li>
+                           </ul>
+                           
+                           <p><h4>{{post_details.content|safe}}</h4></p>
+               
+                          
+             
+     
+                           {% if user.is_authenticated %}
+                                {% include "forum-comment.html"%}
+                            {% endif %}
+                           <!--Author Comments End-->
+                           <!--Related Posts Start-->
+                         
+                           <!--Related Posts End-->
+                           <!--Leave a Comment Start-->
+                           {% comment %} <div class="wf100 comment-form">
+                              <h4>Leave a Comment</h4>
+                              <ul>
+                                 <form action="/blog/comment" method="post">
+                                    <li class="full">
+                                       <textarea class="form-control" name="comment"placeholder="Write Comments"></textarea>
+                                    </li>
+                                    <li class="full">
+                                       <button class="post-btn">Post Your Comment</button>
+                                    </li>
+                                    </form>
+                              </ul>
+                              
+                           </div> {% endcomment %}
+                           <!--Leave a Comment End-->
+                        </div>
+                        <!--Blog Single Content End-->
+                     </div>
+                     <!--Sidebar Start-->
+                     <div class="col-lg-3 col-md-4">
+                        <div class="sidebar">
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              <h5>Search</h5>
+                              <div class="side-search">
+                                 <form id="form-submit-js" action="{% url 'forum-search' %}">
+                                    {%csrf_token%}
+                                    <input class="form-control" name="search" placeholder="Search" type="search"/>
+                                    <button type="submit" id="f-submit"><i class="fas fa-search"></i></button>
+                                 </form>
+                              </div>
+                           </div>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <!-- <div class="side-widget text-widget">
+                              <h5>Text Widget</h5>
+                              <p> We are Ecova: eco &amp; environmental community. We need your support and help to Stop Globar Warning. Few generations ago it to seemed like world’s resources were infinite, and the people needed only to access them to create business, Lorem ipsum dolor it amet consect adipiscing. </p>
+                           </div> -->
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              
+                              <h5>Recent Articles</h5>
+                              <ul class="lastest-products">
+                                 {% for recent_post in recent_posts %}
+                                 <li> <img alt="" src="{{recent_post.thumbnail}}"/> <strong><a href="#">{{recent_post.title}}...</a></strong> <span class="pdate"><i class="fas fa-calendar-alt"></i>{{recent_post.timestamp}}</span> </li>
+                                 
+                                 {%endfor%}
+                              </ul>
+                           </div>
+                           <!--Widget Start-->
+                           <!--Widget Start-->
+                          
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <!-- <div class="side-widget">
+                              <h5>Tags</h5>
+                              <div class="single-post-tags"> 
+                                 
+                           </div> -->
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           <div class="side-widget">
+                              <h5>Recent Work</h5>
+                              <div class="owl-carousel owl-theme" id="side-slider">
+                                 <!--Item Start-->
+                                 <div class="item">
+                                    <div class="pro-box">
+                                       <img alt="" src="{% static 'images/current-pro5.jpg' %}"/>
+                                       <h5>Forest &amp; Tree Planting</h5>
+                                       <div class="pro-hover">
+                                          <h6>Forest &amp; Tree Planting</h6>
+                                          <p>We are working over 20 years on Waste Management &amp; Material Recycling Projects.</p>
+                                          <a href="#">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--Item End-->
+                                 <!--Item Start-->
+                                 <div class="item">
+                                    <div class="pro-box">
+                                       <img alt="" src="{% static 'images/current-pro2.jpg' %}"/>
+                                       <h5>Forest &amp; Tree Planting</h5>
+                                       <div class="pro-hover">
+                                          <h6>Forest &amp; Tree Planting</h6>
+                                          <p>We are working over 20 years on Waste Management &amp; Material Recycling Projects.</p>
+                                          <a href="#">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--Item End-->
+                                 <!--Item Start-->
+                                 <div class="item">
+                                    <div class="pro-box">
+                                       <img alt="" src="{% static 'images/current-pro1.jpg' %}"/>
+                                       <h5>Forest &amp; Tree Planting</h5>
+                                       <div class="pro-hover">
+                                          <h6>Forest &amp; Tree Planting</h6>
+                                          <p>We are working over 20 years on Waste Management &amp; Material Recycling Projects.</p>
+                                          <a href="#">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!--Item End-->
+                              </div>
+                           </div>
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                           
+                           <!--Widget End-->
+                           <!--Widget Start-->
+                          
+                           <!--Widget End-->
+                        </div>
+                     </div>
+                     <!--Sidebar End-->
+                  </div>
+               </div>
+            </div>
+         </section>
+         <script>
+            document.getElementById('f-submit').onclick = function(){
+                document.getElementById('form-submit-js').submit();
+            }
+        </script>
+         <!--Blog End-->
+         <!--Footer Start-->
+       {% endblock %}

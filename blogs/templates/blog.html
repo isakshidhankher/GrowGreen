@@ -1,0 +1,276 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block body %}
+        <div id="search">
+            <button class="close" type="button">Ã—</button>
+            <form class="search-overlay-form">
+                <input placeholder="type keyword(s) here" type="search" value="" />
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <!--Header End-->
+        <!--Inner Header Start-->
+        <section class="wf100 p100 inner-header">
+            <div class="container">
+                <h1>Popular Blogs</h1>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#"> Blogs </a></li>
+                    <!-- <li><a href="#">Blog Full with Sidebar</a></li> -->
+                </ul>
+            </div>
+        </section>
+        <!--Inner Header End-->
+        <!--Blog Start-->
+        <section class="wf100 p80 blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--Blog Posts Start-->
+                        <div class="blog-posts">
+                            <!--Blog Post Start-->
+                            {%for post in posts %}
+                            <div class="blog-post">
+                                <a href="{% url 'blog_details' post.sno%}"><div class="blog-thumb"><img 
+                                        src="/media/{{post.thumbnail}}"/> </div>
+                                    </a>
+                                <div class="blog-txt">
+                                    <h3><a href="{% url 'blog_details' post.sno%}">{{post.title}}</a></h3>
+                                    <ul class="post-meta">
+                                        <li> <a href="#"><i class="fas fa-user-circle"></i> {{post.author}}</a> </li>
+                                        <li> <a href="#"><i class="fas fa-calendar-alt"></i> {{post.timestamp}}</a>
+                                        </li>
+                                        <!-- <li> <a href="#"><i class="fas fa-comments"></i> {{post.comment.0}} </a> </li> -->
+                                        <!-- <li class="post-tags"><i class="fas fa-tags"></i> <a href="#">Plant</a>, <a
+                                                href="#">Trees</a>, <a href="#">Water</a>, <a href="#">Recycling</a>
+                                        </li> -->
+                                    </ul>
+                                    <p> {{post.brief_description|slice:'500'}}... </p>
+                                    <a class="read-post" href="{% url 'blog_details' post.sno%}">Read Post</a>
+                                </div>
+                            </div>
+                            {%endfor%}
+                            <!--Blog Post End-->
+                            <!--Blog Post Start-->
+                            
+                            <!--Blog Post End-->
+                            <!--Blog Post Start-->
+                        
+                            <!--Blog Post End-->
+                            <div class="gt-pagination">
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item"> <a aria-label="Previous" class="page-link" href="#"> <i
+                                                    class="fas fa-angle-left"></i> </a> </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"> <a aria-label="Next" class="page-link" href="#"> <i
+                                                    class="fas fa-angle-right"></i> </a> </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!--Blog Posts End-->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sidebar">
+                            <!--Widget Start-->
+                            <div class="side-widget">
+                                <h5>Search</h5>
+                                <div class="side-search">
+                                    <form id="form-submit-js" action="{% url 'search' %}">
+                                        {%csrf_token%}
+                                        <input class="form-control" name="search" placeholder="Search" type="search"/>
+                                        <button type="submit" id="f-submit"><i class="fas fa-search"></i></button>
+                                     </form>
+                                </div>
+                            </div>
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget text-widget">
+                                <h5>Text Widget</h5>
+                                <p> We are Ecova: eco &amp; environmental community. We need your support and help to
+                                    Stop Globar Warning. Few generations ago it to seemed like worldâ€™s resources were
+                                    infinite, and the people needed only to access them to create business, Lorem ipsum
+                                    dolor it amet consect adipiscing. </p>
+                            </div> -->
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget">
+                                <h5>News &amp; Articles</h5>
+                                <ul class="lastest-products">
+                                    <li> <img alt="" src="{% static 'images/flp1.jpg' %}" /> <strong><a href="#">How you
+                                                can keep alive
+                                                wild animals for...</a></strong> <span class="pdate"><i
+                                                class="fas fa-calendar-alt"></i> 29 September, 2018</span> </li>
+                                    <li> <img alt="" src="{% static 'images/flp2.jpg' %}" /> <strong><a
+                                                href="#">Eliminate your plastic
+                                                bottle pollution</a></strong> <span class="pdate"><i
+                                                class="fas fa-calendar-alt"></i> 29 September, 2018</span> </li>
+                                    <li> <img alt="" src="{% static 'images/flp3.jpg' %}" /> <strong><a href="#">How you
+                                                can keep alive
+                                                wild animals for...</a></strong> <span class="pdate"><i
+                                                class="fas fa-calendar-alt"></i> 29 September, 2018</span> </li>
+                                </ul>
+                            </div> -->
+                            <!--Widget Start-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget project-list-widget">
+                                <h5>Current Projects</h5>
+                                <ul>
+                                    {% for post in featured_post %}
+                                    <li><a href="{% url 'blog_details' post.post.sno%}">{{post.post.title}}</a></li>
+                                   
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div> -->
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget">
+                                <h5>Tags</h5>
+                                <div class="single-post-tags"> <a href="#">Solar Energy</a> <a href="#"> Plant Ecology
+                                    </a> <a href="#"> Wildlife </a> <a href="#"> Eco Ideas </a> <a href="#"> Waste
+                                        Management </a> <a href="#"> Water </a> <a href="#"> Forest Planting </a> <a
+                                        href="#"> Donation </a> <a href="#"> Wind Energy </a> <a href="#"> Recycling
+                                    </a> </div>
+                            </div> -->
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <div class="side-widget">
+                                <h5>Recent Work</h5>
+                                <div class="owl-carousel owl-theme" id="side-slider">
+                                    {% for i in recent %}
+                                    <!--Item Start-->
+                                    <div class="item">
+                                        <div class="pro-box"> <img alt=""
+                                                src="/media/{{i.img}}" />
+                                            <!-- <h5>Forest &amp; Tree Planting</h5> -->
+                                            <div class="pro-hover">
+                                                <!-- <h6>Forest &amp; Tree Planting</h6> -->
+                                                <p>{{i.text}}</p>
+                                                <!-- <a href="#">Read More</a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+                                    <!--Item End-->
+                                    <!--Item Start-->
+                          
+                                       
+                                    </div>
+                                    <!--Item End-->
+                                </div>
+                            </div>
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget archives">
+                                <h5>Archives</h5>
+                                <ul>
+                                    <li><a href="#"> November 2018</a></li>
+                                    <li><a href="#"> October 2018</a></li>
+                                    <li><a href="#"> September 2018</a></li>
+                                    <li><a href="#"> August 2018</a></li>
+                                    <li><a href="#"> July 2018</a></li>
+                                    <li><a href="#"> June 2018</a></li>
+                                    <li><a href="#"> May 2018</a></li>
+                                    <li><a href="#"> April 2018</a></li>
+                                    <li><a href="#"> March 2018</a></li>
+                                    <li><a href="#"> February 2018</a></li>
+                                    <li><a href="#"> January 2018</a></li>
+                                    <li><a href="#"> December 2017</a></li>
+                                </ul>
+                            </div> -->
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget side-volunteer-form">
+                                <h5>Become a Volunteer</h5>
+                                <ul>
+                                    <li>
+                                        <input aria-label="Your Name" class="form-control" placeholder="Your Name"
+                                            type="text" />
+                                    </li>
+                                    <li>
+                                        <input aria-label="Email Address" class="form-control"
+                                            placeholder="Email Address" type="text" />
+                                    </li>
+                                    <li>
+                                        <input aria-label="Contact" class="form-control" placeholder="Contact"
+                                            type="text" />
+                                    </li>
+                                    <li>
+                                        <input class="fsubmit" type="submit" value="Signup to Join us Now" />
+                                    </li>
+                                </ul>
+                            </div> -->
+                            <!--Widget End-->
+                            <!--Widget Start-->
+                            <!-- <div class="side-widget">
+                                <div class="donation-amount">
+                                    <h5>Make a Donation</h5>
+                                    <form>
+                                        <ul class="radio-boxes">
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d1" name="donation" type="radio" />
+                                                    <label class="css-label" for="d1">$5</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d2" name="donation" type="radio" />
+                                                    <label class="css-label" for="d2">$20</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d3" name="donation" type="radio" />
+                                                    <label class="css-label" for="d3">$50</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d4" name="donation" type="radio" />
+                                                    <label class="css-label" for="d4">$100</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d5" name="donation" type="radio" />
+                                                    <label class="css-label" for="d5">$250</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio custom">
+                                                    <input class="css-radio" id="d6" name="donation" type="radio" />
+                                                    <label class="css-label" for="d6">$500</label>
+                                                </div>
+                                            </li>
+                                            <li class="last-input">
+                                                <div class="inputs">
+                                                    <input class="enter" placeholder="Enter other amout $ "
+                                                        type="text" />
+                                                </div>
+                                            </li>
+                                            <li class="form-submit">
+                                                <button type="submit">Continue to Donate</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div> -->
+                            <!--Widget End-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+        document.getElementById('f-submit').onclick = function(){
+            document.getElementById('form-submit-js').submit();
+        }
+    </script>
+        <!--Blog End-->
+        <!--Footer Start-->
+        {%endblock%}

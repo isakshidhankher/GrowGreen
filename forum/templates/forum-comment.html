@@ -1,0 +1,144 @@
+{% load static%}
+<br>
+<div id="response-ajax">
+    <div class="post-comments wf100">
+        <h6>Comments on Post</h6>
+        <ul class="comments">
+        <!--Comment Start-->
+        {% for comment in comments|slice:'::-1' %}
+        <li class="comment">
+            <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+            <div class="comment-txt">
+                <h6>{{comment.user.username}}</h6>
+                <p>{{comment.message}}</p>
+                <ul class="comment-time">
+                    <li>{{comment.timestamp}}</li>
+                    <!-- <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li> -->
+                    <li> <a href="#"></a> </li>
+                </ul>
+                <!-- <form id="{{comment.sno}}form-submit-js">
+                    <input name="parent" id="parent_sno{{comment.sno}}" type="" value="{{comment.sno}}">
+                    <input name="message" id="message-reply{{comment.sno}}">
+                    <button><i class="fas fa-paper-plane" style="color:green"></i></a></button>
+                </form> -->
+            </div>
+
+            
+
+            <ul class="children">
+                <!--Comment Start-->
+
+                
+                {% for key, value in repliesdict.items %}
+                                                        {% if comment == key %}
+                                                            {% for k in value %}
+                <!--Comment End-->
+                <!--Comment Start-->
+                <li class="comment">
+                    <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                    <div class="comment-txt">
+                    <h6>{{k.user.username}}  </h6>
+                    <p>{{k.message}} </p>
+                    <ul class="comment-time">
+                        <li>{{k.timestamp}}</li>
+                        <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                    </ul>
+                    </div>
+                </li>
+                {%endfor%}
+                {%endif%}
+                {%endfor%}
+                <!--Comment End-->
+            </ul>
+        </li>
+        {%endfor %}
+        <!--Comment End-->
+        <!--Comment Start-->
+        
+        <!--Comment End-->
+        </ul>
+    </div>
+
+    <div class="wf100 comment-form">
+        <h6>Leave a Comment</h6>
+        <ul>
+        <form id="comment" method="post">
+            <li class="w3">
+                <input type="text" id="message" class="form-control" placeholder="Type Here...">
+                
+            </li>
+            <li class="w3">
+                <button class="post-btn" id="form-submit"><i class="fas fa-paper-plane"></i></button>
+            </li>
+            </form>
+        </ul>
+        
+    </div>
+</div>
+<script>
+
+{%for comment in comments|slice:'::-1'%}
+    $("#{{comment.sno}}form-submit-js").on('submit', reply);
+    
+    function reply(e){
+        e.preventDefault();
+        alert("reply is running{{comment.sno}}")
+        btn = document.getElementById("form-submit");
+        btn.disabled=true;
+        btn.innerText = ". . .";
+        $.ajax({
+            'dataType':'json', 
+            'method':'POST',
+            'url':'/forum/forum-detail/{{post_details.sno}}',
+            'data':{
+                "csrfmiddlewaretoken":"{{csrf_token}}",
+                // "name":$('#name').val(),
+                // "email":$('#email').val(),
+                "subject":"Hardcoded subject",
+                "message":$('#message-reply{{comment.sno}}').val(),
+                "parent":"{{comment.sno}}",
+            },
+            success : function(response){
+                    document.getElementById("form-submit").innerText = "Submit";
+                    btn.disabled=false;
+                    $("#response-ajax").html(response['html']);
+                },
+            fail:function(){
+                alert("some error occured");
+            }
+
+        });
+    }
+{%endfor%}
+    $('#comment').on('submit', comment);
+    
+    function comment(e){
+        e.preventDefault();
+
+        btn = document.getElementById("form-submit");
+        btn.disabled=true;
+        btn.innerText = ". . .";
+        $.ajax({
+            'dataType':'json', 
+            'method':'POST',
+            'url':'/forum/forum-detail/{{post_details.sno}}',
+            'data':{
+                "csrfmiddlewaretoken":"{{csrf_token}}",
+                // "name":$('#name').val(),
+                // "email":$('#email').val(),
+                "subject":"Hardcoded subject",
+                "message":$('#message').val(),
+                "parent":""
+            },
+            success : function(response){
+                    document.getElementById("form-submit").innerText = "Submit";
+                    btn.disabled=false;
+                    $("#response-ajax").html(response['html']);
+                },
+            fail:function(){
+                alert("some error occured");
+            }
+
+        });
+    }
+</script>

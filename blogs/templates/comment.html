@@ -1,0 +1,101 @@
+{% load static%}
+<div id="response-ajax">
+    <div class="post-comments wf100">
+        <h4>Comments on Post</h4>
+        <ul class="comments">
+        <!--Comment Start-->
+        {% for comment in comments|slice:'::-1' %}
+        <li class="comment">
+            <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+            <div class="comment-txt">
+                <h6>{{comment.user.username}}</h6>
+                <p>{{comment.message}}</p>
+                <ul class="comment-time">
+                    <li>{{comment.timestamp}}</li>
+                    <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                </ul>
+            </div>
+
+
+
+            <ul class="children">
+                <!--Comment Start-->
+
+                
+                {% for key, value in repliesdict.items %}
+                                                        {% if comment == key %}
+                                                            {% for k in value %}
+                <!--Comment End-->
+                <!--Comment Start-->
+                <li class="comment">
+                    <div class="user-thumb"> <img alt="" src="{% static 'images/auser.jpg' %}"/></div>
+                    <div class="comment-txt">
+                    <h6>{{k.user.username}}  </h6>
+                    <p>{{k.message}} </p>
+                    <ul class="comment-time">
+                        <li>{{k.timestamp}}</li>
+                        <li> <a href="#"><i class="fas fa-reply"></i> Reply</a> </li>
+                    </ul>
+                    </div>
+                </li>
+                {%endfor%}
+                {%endif%}
+                {%endfor%}
+                <!--Comment End-->
+            </ul>
+        </li>
+        {%endfor %}
+        <!--Comment End-->
+        <!--Comment Start-->
+        
+        <!--Comment End-->
+        </ul>
+    </div>
+
+    <div class="wf100 comment-form">
+        <h4>Leave a Comment</h4>
+        <ul>
+        <form id="comment" method="post">
+            <li class="full">
+                <textarea class="form-control" id="message" name="comment"placeholder="Write Comments"></textarea>
+            </li>
+            <li class="full">
+                <button class="post-btn" id="form-submit">Post Your Comment</button>
+            </li>
+            </form>
+        </ul>
+        
+    </div>
+</div>
+<script>
+    $('#comment').on('submit', comment);
+
+    function comment(e){
+        e.preventDefault();
+
+        btn = document.getElementById("form-submit");
+        btn.disabled=true;
+        btn.innerText = "Submmiting...";
+        $.ajax({
+            'dataType':'json', 
+            'method':'POST',
+            'url':'/blog/blog_details/{{post_details.sno}}',
+            'data':{
+                "csrfmiddlewaretoken":"{{csrf_token}}",
+                // "name":$('#name').val(),
+                // "email":$('#email').val(),
+                "subject":"Hardcoded subject",
+                "message":$('#message').val(),
+            },
+            success : function(response){
+                    document.getElementById("form-submit").innerText = "Submit";
+                    btn.disabled=false;
+                    $("#response-ajax").html(response['html']);
+                },
+            fail:function(){
+                alert("some error occured");
+            }
+
+        });
+    }
+</script>
